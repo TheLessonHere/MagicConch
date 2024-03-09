@@ -21,6 +21,9 @@ const EnemyAggressionSelector = ({
         value={enemyAggression}
         label="Select Aggression Level"
         onChange={handleChange}
+        sx={{
+          minWidth: 200
+        }}
       >
         {aggressionOptions.map((aggression) => (
           <MenuItem key={aggression} value={aggression}>

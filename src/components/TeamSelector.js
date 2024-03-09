@@ -50,7 +50,7 @@ const TeamSelector = ({selectedAgents, setSelectedAgents, setPlannedUlts}) => {
   }
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'nowrap', mb: 3 }}>
       <Box sx={{ display: 'flex', flexDirection: 'column' }}>
         <InputLabel id="agent-selector-1-label">Agent 1</InputLabel>
         <Select
@@ -59,6 +59,10 @@ const TeamSelector = ({selectedAgents, setSelectedAgents, setPlannedUlts}) => {
           value={selectedAgents.agent1}
           label="Agent 1"
           onChange={e => handleChange(e, 'agent1')}
+          sx={{
+            minWidth: 200,
+            mr: 1,
+          }}
         >
           {agentOptions.map((agent) => (
             <MenuItem key={agent} value={agent}>
@@ -88,6 +92,10 @@ const TeamSelector = ({selectedAgents, setSelectedAgents, setPlannedUlts}) => {
           value={selectedAgents.agent2}
           label="Agent 2"
           onChange={e => handleChange(e, 'agent2')}
+          sx={{
+            minWidth: 200,
+            mx: 1
+          }}
         >
           {agentOptions.map((agent) => (
             <MenuItem key={agent} value={agent}>
@@ -117,6 +125,10 @@ const TeamSelector = ({selectedAgents, setSelectedAgents, setPlannedUlts}) => {
           value={selectedAgents.agent3}
           label="Agent 3"
           onChange={e => handleChange(e, 'agent3')}
+          sx={{
+            minWidth: 200,
+            mx: 1
+          }}
         >
           {agentOptions.map((agent) => (
             <MenuItem key={agent} value={agent}>
@@ -146,6 +158,10 @@ const TeamSelector = ({selectedAgents, setSelectedAgents, setPlannedUlts}) => {
           value={selectedAgents.agent4}
           label="Agent 4"
           onChange={e => handleChange(e, 'agent4')}
+          sx={{
+            minWidth: 200,
+            mx: 1
+          }}
         >
           {agentOptions.map((agent) => (
             <MenuItem key={agent} value={agent}>
@@ -175,6 +191,10 @@ const TeamSelector = ({selectedAgents, setSelectedAgents, setPlannedUlts}) => {
           value={selectedAgents.agent5}
           label="Agent 5"
           onChange={e => handleChange(e, 'agent5')}
+          sx={{
+            minWidth: 200,
+            ml: 1
+          }}
         >
           {agentOptions.map((agent) => (
             <MenuItem key={agent} value={agent}>

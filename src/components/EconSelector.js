@@ -20,6 +20,9 @@ const EconSelector = ({
         value={econ}
         label="Select Econ"
         onChange={handleChange}
+        sx={{
+          minWidth: 200
+        }}
       >
         {econOptions.map((type) => (
           <MenuItem key={type} value={type}>

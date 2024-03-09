@@ -24,10 +24,19 @@ const SettingsToolbar = ({
                 setPlannedUlts={setPlannedUlts}
             />
         </Grid>
-        <Grid container>
-            <MapSelector map={map} setMap={setMap}/>
-            <EconSelector econ={econ} setEcon={setEcon}/>
-            <EnemyAggressionSelector enemyAggression={enemyAggression} setEnemyAggression={setEnemyAggression}/>
+        <Grid container sx={{ mb: 3 }}>
+            <Grid item container sx={{ justifyContent: 'center' }} xs={4}>
+                <MapSelector map={map} setMap={setMap}/>
+            </Grid>
+            <Grid item container sx={{ justifyContent: 'center' }} xs={4}>
+                <EconSelector econ={econ} setEcon={setEcon}/>
+            </Grid>
+            <Grid item container sx={{ justifyContent: 'center' }} xs={4}>
+                <EnemyAggressionSelector
+                    enemyAggression={enemyAggression}
+                    setEnemyAggression={setEnemyAggression}
+                />
+            </Grid>
         </Grid>
     </Grid>
 )

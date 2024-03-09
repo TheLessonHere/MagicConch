@@ -1,8 +1,14 @@
 import React from 'react';
 import { determineViableStrats, getRandomUlt, randomizeStrats } from "./data/helpers";
-import Button from '@mui/material/Button'
 import SettingsToolbar from './components/SettingsToolbar';
-import { Typography } from '@mui/material';
+import {
+  Typography,
+  Button,
+  Container,
+  Grid,
+  Paper,
+  Box,
+} from '@mui/material';
 
 const App = () => {
   const [selectedAgents, setSelectedAgents] = React.useState({
@@ -20,51 +26,69 @@ const App = () => {
   const [additionalUlt, setAdditionalUlt] = React.useState('');
 
   return (
-    <div className="App">
-      <SettingsToolbar
-        selectedAgents={selectedAgents}
-        setSelectedAgents={setSelectedAgents}
-        map={map}
-        setMap={setMap}
-        econ={econ}
-        setEcon={setEcon}
-        enemyAggression={enemyAggression}
-        setEnemyAggression={setEnemyAggression}
-        setPlannedUlts={setPlannedUlts}
-      />
-      <Button
-        variant="contained"
-        onClick={() => {
-          const strat =
-            randomizeStrats(
-              determineViableStrats({
-                team: Object.values(selectedAgents),
-                map,
-                econ,
-                plannedUlts,
-                enemyAggression
-              })
-            )
-          setCurrentStrat(strat)
-          if(econ !== 'Save' && (strat.type === 'Fast' || strat.type === 'Split' || strat.type === 'Contact Explode')) {
-            const ult = getRandomUlt(plannedUlts);
-            ult && setAdditionalUlt(` using ${ult} ult`)
-          } else {
-            setAdditionalUlt('')
-          }
-        }}
-        disabled={
-          Object.values(selectedAgents).some(agent => agent === '') ||
-          !map ||
-          !econ
-        }
-      >
-        Pull the string
-      </Button>
-      <Typography variant="h3">
-        {currentStrat.stratStr ? `${currentStrat.stratStr}${additionalUlt}` : ''}
-      </Typography>
-    </div>
+    <Container maxWidth="lg" className="App">
+      <Grid container spacing={3}>
+        <Grid item xs={12}>
+          <Paper elevation={3} sx={{ p: 4 }}>
+            <Typography variant="h4" component="div" align="center">
+              The Valorant Magic Conch
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper elevation={2} sx={{ p: 4, display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+            <SettingsToolbar
+              selectedAgents={selectedAgents}
+              setSelectedAgents={setSelectedAgents}
+              map={map}
+              setMap={setMap}
+              econ={econ}
+              setEcon={setEcon}
+              enemyAggression={enemyAggression}
+              setEnemyAggression={setEnemyAggression}
+              setPlannedUlts={setPlannedUlts}
+            />
+            <Box sx={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  const strat =
+                    randomizeStrats(
+                      determineViableStrats({
+                        team: Object.values(selectedAgents),
+                        map,
+                        econ,
+                        plannedUlts,
+                        enemyAggression
+                      })
+                    )
+                  setCurrentStrat(strat)
+                  if(econ !== 'Save' && (strat.type === 'Fast' || strat.type === 'Split' || strat.type === 'Contact Explode')) {
+                    const ult = getRandomUlt(plannedUlts);
+                    ult && setAdditionalUlt(` using ${ult} ult`)
+                  } else {
+                    setAdditionalUlt('')
+                  }
+                }}
+                disabled={
+                  Object.values(selectedAgents).some(agent => agent === '') ||
+                  !map ||
+                  !econ
+                }
+                sx={{
+                  maxWidth: 200
+                }}
+              >
+                Pull the string
+              </Button>
+            </Box>
+            <Typography variant="h3">
+              {currentStrat.stratStr ? `${currentStrat.stratStr}${additionalUlt}` : ''}
+            </Typography>
+          </Paper>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
 

@@ -19,6 +19,9 @@ const MapSelector = ({
         value={map}
         label="Select Map"
         onChange={handleChange}
+        sx={{
+          minWidth: 200
+        }}
       >
         {Object.keys(maps).map((map) => (
           <MenuItem key={map} value={maps[map]}>
